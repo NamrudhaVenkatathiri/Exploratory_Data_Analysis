@@ -82,52 +82,7 @@ fig.update_layout(title='Correlation Matrix',
                   yaxis_title='Features')
 
 fig.show()
-"""
-all_hashtags = []
 
-# Iterate through each row in the 'Hashtags' column
-for row in data['Hashtags']:
-    hashtags = str(row).split()
-    hashtags = [tag.strip() for tag in hashtags]
-    all_hashtags.extend(hashtags)
 
-# Create a pandas DataFrame to store the hashtag distribution
-hashtag_distribution = pd.Series(all_hashtags).value_counts().reset_index()
-hashtag_distribution.columns = ['Hashtag', 'Count']
-
-fig = px.bar(hashtag_distribution, x='Hashtag',
-             y='Count', title='Distribution of Hashtags')
-fig.show()
-
-hashtag_likes = {}
-hashtag_impressions = {}
-
-# Iterate through each row in the dataset
-for index, row in data.iterrows():
-    hashtags = str(row['Hashtags']).split()
-    for hashtag in hashtags:
-        hashtag = hashtag.strip()
-        if hashtag not in hashtag_likes:
-            hashtag_likes[hashtag] = 0
-            hashtag_impressions[hashtag] = 0
-        hashtag_likes[hashtag] += row['Likes']
-        hashtag_impressions[hashtag] += row['Impressions']
-
-# Create a DataFrame for likes distribution
-likes_distribution = pd.DataFrame(list(hashtag_likes.items()), columns=['Hashtag', 'Likes'])
-
-# Create a DataFrame for impressions distribution
-impressions_distribution = pd.DataFrame(list(hashtag_impressions.items()), columns=['Hashtag', 'Impressions'])
-
-fig_likes = px.bar(likes_distribution, x='Hashtag', y='Likes',
-                   title='Likes Distribution for Each Hashtag')
-
-fig_impressions = px.bar(impressions_distribution, x='Hashtag',
-                         y='Impressions',
-                         title='Impressions Distribution for Each Hashtag')
-
-fig_likes.show()
-fig_impressions.show()
-"""
 
 
